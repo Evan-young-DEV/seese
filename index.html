@@ -156,16 +156,16 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
    <nav class="hnav"><a href="#trust">시세란?</a><a class="btn-sell" href="#">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
   </div>
   <nav class="subnav" id="subnav">
-   <a class="on" data-cat="전체">전체 드론</a><a data-cat="입문형">입문형</a><a data-cat="프로">프로</a><a data-cat="FPV">FPV</a><a data-cat="곧오픈" style="color:#c0c5cd">카메라 · 자전거 (곧 오픈)</a>
+   <a class="on" data-cat="전체">전체</a><a data-cat="카메라">카메라</a><a data-cat="드론">드론</a><a data-cat="곧오픈" style="color:#c0c5cd">자전거 (곧 오픈)</a>
   </nav>
  </div>
 </header>
 
 <!-- HERO BANNERS -->
 <section class="hero"><div class="wrap"><div class="banners">
-  <div class="bn" data-cat="전체"><img src="img/drone1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">이번 주 가장 많이 거래된</div><h3>DJI 드론 실거래 시세</h3><span class="go">지금 보기 →</span></div></div>
-  <div class="bn small" data-cat="프로"><img src="img/drone2.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">매빅 · 에어</div><h3>프로 드론</h3></div></div>
-  <div class="bn small" data-cat="입문형"><img src="img/drone3.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">미니 · 네오</div><h3>입문형 드론</h3></div></div>
+  <div class="bn" data-cat="카메라"><img src="img/cam1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">셔터수 검증 · 실거래 시세</div><h3>카메라 · 렌즈 시세</h3><span class="go">지금 보기 →</span></div></div>
+  <div class="bn small" data-cat="드론"><img src="img/drone1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">DJI 매빅 · 미니</div><h3>드론</h3></div></div>
+  <div class="bn small" data-cat="곧오픈"><img src="img/bike1.jpg" style="filter:grayscale(.5) brightness(.8)" onerror="this.style.opacity=0"><div class="t"><div class="k">곧 오픈</div><h3>자전거</h3></div></div>
 </div></div></section>
 
 <div class="wrap">
@@ -213,6 +213,11 @@ var CNT={};
 function img(p){return p.img;}
 
 var P=[
+ {cat:'카메라',tier:'바디',name:'소니 A7 IV 바디 (셔터 8천컷)',price:2150000,chg:-2.1,ask:2190000,bid:2050000,grade:'A · 정품박스 · 셔터 8,000'},
+ {cat:'카메라',tier:'렌즈',name:'캐논 RF 24-70 F2.8 L',price:1680000,chg:3.0,ask:1720000,bid:1580000,grade:'A · 무필터 · 무흠집'},
+ {cat:'카메라',tier:'바디',name:'후지필름 X-T5 바디 (실버)',price:1490000,chg:0.8,ask:1530000,bid:1400000,grade:'A · 정품박스'},
+ {cat:'카메라',tier:'바디',name:'니콘 Z6 II 바디 (셔터 1만컷)',price:1280000,chg:-3.4,ask:1320000,bid:1200000,grade:'A · 셔터 10,000'},
+ {cat:'카메라',tier:'렌즈',name:'소니 FE 35mm F1.4 GM',price:1390000,chg:1.5,ask:1430000,bid:1300000,grade:'A · 정품 · 풀박스'},
  {cat:'드론',tier:'프로',name:'DJI 매빅 3 Pro (플라이모어 콤보)',price:2280000,chg:4.8,ask:2350000,bid:2150000,grade:'A · 총 비행 5시간 · 배터리 3개'},
  {cat:'드론',tier:'프로',name:'DJI 에어 3S (RC2 콤보)',price:1320000,chg:-1.5,ask:1360000,bid:1240000,grade:'A · 정품박스 · 비행 3시간'},
  {cat:'드론',tier:'입문형',name:'DJI 미니 4 Pro (플라이모어)',price:980000,chg:2.2,ask:1010000,bid:920000,grade:'A · 박스풀세트 · 무사고'},
@@ -229,20 +234,20 @@ function cardHTML(p){var gi=P.indexOf(p),up=p.chg>=0;
   +'<span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>시세 검증</span>'
   +'<span class="trend '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'%</span>'
   +'<img src="'+p.img+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
-  +'<div class="cb"><div class="cat">드론 · '+p.tier+'</div><div class="nm">'+p.name+'</div>'
+  +'<div class="cb"><div class="cat">'+p.cat+' · '+p.tier+'</div><div class="nm">'+p.name+'</div>'
   +'<div class="pl">실거래 시세</div><div class="pr">'+won(p.price)+'</div><div class="ps">즉시구매 '+won(p.ask)+'</div></div></div>';}
 
 document.getElementById('rowPop').innerHTML=P.slice(0,6).map(cardHTML).join('');
 
-var CATS=['전체','입문형','프로','FPV'];
-var dIcon=ICON['드론'];
-document.getElementById('chips').innerHTML=CATS.map(function(c,i){return '<div class="chip'+(i===0?' on':'')+'" data-c="'+c+'">'+dIcon+(c==='전체'?'전체 드론':c)+'</div>';}).join('');
+var CATS=['전체','카메라','드론'];
+var allIcon='<svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
+document.getElementById('chips').innerHTML=CATS.map(function(c,i){return '<div class="chip'+(i===0?' on':'')+'" data-c="'+c+'">'+(c==='전체'?allIcon:ICON[c])+c+'</div>';}).join('');
 var current='전체';
-function renderGrid(){var list=current==='전체'?P:P.filter(function(p){return p.tier===current});
- document.getElementById('gtitle').textContent=current==='전체'?'전체 드론 매물':'드론 · '+current;
+function renderGrid(){var list=current==='전체'?P:P.filter(function(p){return p.cat===current});
+ document.getElementById('gtitle').textContent=current==='전체'?'전체 매물':current+' 매물';
  document.getElementById('grid').innerHTML=list.map(cardHTML).join('');}
 renderGrid();
-function setCat(c){if(c==='곧오픈'){alert('카메라·자전거 카테고리는 곧 오픈합니다 🚀');return;}
+function setCat(c){if(c==='곧오픈'){alert('자전거 카테고리는 곧 오픈합니다 🚀');return;}
  current=c;document.querySelectorAll('.chip').forEach(function(e){e.classList.toggle('on',e.dataset.c===c)});
  document.querySelectorAll('.subnav a').forEach(function(e){e.classList.toggle('on',e.dataset.cat===c)});renderGrid();
  window.scrollTo({top:document.getElementById('gtitle').getBoundingClientRect().top+window.scrollY-120,behavior:'smooth'});}
