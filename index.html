@@ -156,16 +156,16 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
    <nav class="hnav"><a href="#trust">시세란?</a><a class="btn-sell" href="#">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
   </div>
   <nav class="subnav" id="subnav">
-   <a class="on" data-cat="전체">전체</a><a data-cat="자전거">자전거</a><a data-cat="카메라">카메라</a><a data-cat="드론">드론</a><a data-cat="오디오">오디오</a><a data-cat="골프">골프</a><a data-cat="낚시">낚시</a><a data-cat="캠핑">캠핑</a>
+   <a class="on" data-cat="전체">전체 드론</a><a data-cat="입문형">입문형</a><a data-cat="프로">프로</a><a data-cat="FPV">FPV</a><a data-cat="곧오픈" style="color:#c0c5cd">카메라 · 자전거 (곧 오픈)</a>
   </nav>
  </div>
 </header>
 
 <!-- HERO BANNERS -->
 <section class="hero"><div class="wrap"><div class="banners">
-  <div class="bn" data-cat="자전거"><img src="img/bike1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">이번 주 가장 많이 거래된</div><h3>로드 자전거 시세</h3><span class="go">지금 보기 →</span></div></div>
-  <div class="bn small" data-cat="카메라"><img src="img/cam1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">미러리스 · DSLR</div><h3>카메라</h3></div></div>
-  <div class="bn small" data-cat="캠핑"><img src="img/camp1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">백패킹 · 오토캠핑</div><h3>캠핑 장비</h3></div></div>
+  <div class="bn" data-cat="전체"><img src="img/drone1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">이번 주 가장 많이 거래된</div><h3>DJI 드론 실거래 시세</h3><span class="go">지금 보기 →</span></div></div>
+  <div class="bn small" data-cat="프로"><img src="img/drone2.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">매빅 · 에어</div><h3>프로 드론</h3></div></div>
+  <div class="bn small" data-cat="입문형"><img src="img/drone3.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">미니 · 네오</div><h3>입문형 드론</h3></div></div>
 </div></div></section>
 
 <div class="wrap">
@@ -173,10 +173,7 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
 </div>
 
 <!-- POPULAR ROW -->
-<div class="wrap"><div class="sec"><div class="sec-h"><h2>🔥 실시간 인기 매물</h2><a href="#">전체보기 →</a></div><div class="row hide-sb" id="rowPop"></div></div></div>
-
-<!-- JUST TRADED ROW -->
-<div class="wrap"><div class="sec"><div class="sec-h"><h2>⚡ 방금 거래됨</h2><a href="#">전체보기 →</a></div><div class="row hide-sb" id="rowNew"></div></div></div>
+<div class="wrap"><div class="sec"><div class="sec-h"><h2>🔥 이번 주 인기 드론</h2><a href="#">전체보기 →</a></div><div class="row hide-sb" id="rowPop"></div></div></div>
 
 <!-- FULL GRID -->
 <div class="wrap"><div class="sec"><div class="sec-h"><h2 id="gtitle">전체 매물</h2><a href="#">정렬 ▾</a></div><div class="grid" id="grid"></div></div></div>
@@ -210,37 +207,18 @@ var POOL={자전거:['img/bike1.jpg','img/bike2.jpg','img/bike3.jpg','img/bike4.
  캠핑:['img/camp1.jpg','img/camp2.jpg','img/camp3.jpg'],
  골프:['img/golf1.jpg','img/golf2.jpg','img/golf3.jpg'],
  낚시:['img/fish1.jpg','img/fish2.jpg','img/fish3.jpg'],
- 드론:['img/drone1.jpg','img/drone2.jpg','img/drone3.jpg'],
+ 드론:['img/drone1.jpg','img/drone2.jpg','img/drone3.jpg','img/drone4.jpg','img/drone5.jpg','img/drone6.jpg'],
  오디오:['img/audio1.jpg','img/audio2.jpg','img/audio3.jpg']};
 var CNT={};
 function img(p){return p.img;}
 
 var P=[
- {cat:'자전거',name:'트렉 Émonda SL6 2023 (54)',price:2380000,chg:4.2,ask:2420000,bid:2250000,grade:'A · 주행 1,200km'},
- {cat:'카메라',name:'소니 A7 IV 바디 (셔터 8천컷)',price:2150000,chg:-2.1,ask:2190000,bid:2050000,grade:'A · 정품박스'},
- {cat:'자전거',name:'스페셜라이즈드 알레 2022',price:1190000,chg:1.8,ask:1230000,bid:1100000,grade:'B+ · 생활기스'},
- {cat:'카메라',name:'캐논 RF 24-70 F2.8 렌즈',price:1680000,chg:3.0,ask:1720000,bid:1580000,grade:'A · 무필터'},
- {cat:'캠핑',name:'헬리녹스 택티컬 코트 컨버터블',price:340000,chg:-1.2,ask:355000,bid:310000,grade:'A · 풀세트'},
- {cat:'자전거',name:'캐니언 Ultimate CF SL 2023',price:2750000,chg:5.6,ask:2820000,bid:2600000,grade:'A · 주행 800km'},
- {cat:'카메라',name:'후지필름 X-T5 바디 (실버)',price:1490000,chg:0.8,ask:1530000,bid:1400000,grade:'A · 정품박스'},
- {cat:'캠핑',name:'스노우피크 엔트리팩 TT',price:520000,chg:2.4,ask:540000,bid:480000,grade:'B+ · 사용감'},
- {cat:'골프',name:'타이틀리스트 TSR3 드라이버',price:430000,chg:-0.5,ask:450000,bid:400000,grade:'A · 정품샤프트'},
- {cat:'자전거',name:'자이언트 TCR Advanced 2 2022',price:1620000,chg:2.0,ask:1670000,bid:1520000,grade:'B+ · 휠 교체'},
- {cat:'카메라',name:'니콘 Z6 II 바디',price:1280000,chg:-3.4,ask:1320000,bid:1200000,grade:'A · 셔터 1만컷'},
- {cat:'골프',name:'캘러웨이 패러다임 아이언 세트',price:890000,chg:1.1,ask:920000,bid:840000,grade:'A · 7아이언'},
- {cat:'골프',name:'핑 G430 맥스 드라이버',price:510000,chg:2.7,ask:530000,bid:470000,grade:'A · 헤드커버'},
- {cat:'캠핑',name:'코베아 큐브 가스버너',price:95000,chg:0.4,ask:99000,bid:85000,grade:'A · 박스풀세트'},
- {cat:'카메라',name:'소니 FE 35mm F1.4 GM',price:1390000,chg:1.5,ask:1430000,bid:1300000,grade:'A · 정품'},
- {cat:'자전거',name:'첼로 케인 105 2023',price:980000,chg:-1.0,ask:1010000,bid:910000,grade:'B+ · 입문용'},
- {cat:'낚시',name:'시마노 스텔라 SW 8000 릴',price:1180000,chg:3.6,ask:1220000,bid:1100000,grade:'A · 박스풀'},
- {cat:'낚시',name:'다이와 모어댄 AGS 96ML 로드',price:540000,chg:1.2,ask:560000,bid:500000,grade:'A · 무흠집'},
- {cat:'낚시',name:'아부가르시아 레보 베이트릴',price:160000,chg:-0.8,ask:170000,bid:145000,grade:'B+ · 사용감'},
- {cat:'드론',name:'DJI 매빅 3 Pro (플라이모어)',price:2280000,chg:4.8,ask:2350000,bid:2150000,grade:'A · 비행 5시간'},
- {cat:'드론',name:'DJI 미니 4 Pro 콤보',price:980000,chg:2.2,ask:1010000,bid:920000,grade:'A · 박스풀세트'},
- {cat:'드론',name:'DJI 에어 3S',price:1320000,chg:-1.5,ask:1360000,bid:1240000,grade:'A · 정품'},
- {cat:'오디오',name:'젠하이저 HD660S2 헤드폰',price:480000,chg:1.4,ask:500000,bid:440000,grade:'A · 정품박스'},
- {cat:'오디오',name:'소니 WH-1000XM5',price:320000,chg:-2.0,ask:335000,bid:295000,grade:'A · 무흠집'},
- {cat:'오디오',name:'포컬 클리어 MG',price:980000,chg:3.1,ask:1020000,bid:900000,grade:'A · 풀박스'}
+ {cat:'드론',tier:'프로',name:'DJI 매빅 3 Pro (플라이모어 콤보)',price:2280000,chg:4.8,ask:2350000,bid:2150000,grade:'A · 총 비행 5시간 · 배터리 3개'},
+ {cat:'드론',tier:'프로',name:'DJI 에어 3S (RC2 콤보)',price:1320000,chg:-1.5,ask:1360000,bid:1240000,grade:'A · 정품박스 · 비행 3시간'},
+ {cat:'드론',tier:'입문형',name:'DJI 미니 4 Pro (플라이모어)',price:980000,chg:2.2,ask:1010000,bid:920000,grade:'A · 박스풀세트 · 무사고'},
+ {cat:'드론',tier:'입문형',name:'DJI 네오 (단품)',price:280000,chg:3.4,ask:295000,bid:255000,grade:'A · 거의 새것 · 박스풀'},
+ {cat:'드론',tier:'FPV',name:'DJI FPV 콤보 (고글 V2)',price:890000,chg:-2.3,ask:920000,bid:830000,grade:'B+ · 사용감 · 정상작동'},
+ {cat:'드론',tier:'FPV',name:'DJI 아바타 2 (프로뷰 콤보)',price:1050000,chg:5.1,ask:1090000,bid:980000,grade:'A · 비행 2시간 · 풀박스'}
 ];
 // 각 상품에 카테고리별 실사진 순서대로 배정
 P.forEach(function(p){var n=CNT[p.cat]||0;p.img=POOL[p.cat][n%POOL[p.cat].length];CNT[p.cat]=n+1;});
@@ -251,21 +229,21 @@ function cardHTML(p){var gi=P.indexOf(p),up=p.chg>=0;
   +'<span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>시세 검증</span>'
   +'<span class="trend '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'%</span>'
   +'<img src="'+p.img+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
-  +'<div class="cb"><div class="cat">'+p.cat+'</div><div class="nm">'+p.name+'</div>'
+  +'<div class="cb"><div class="cat">드론 · '+p.tier+'</div><div class="nm">'+p.name+'</div>'
   +'<div class="pl">실거래 시세</div><div class="pr">'+won(p.price)+'</div><div class="ps">즉시구매 '+won(p.ask)+'</div></div></div>';}
 
-document.getElementById('rowPop').innerHTML=P.slice(0,8).map(cardHTML).join('');
-document.getElementById('rowNew').innerHTML=P.slice(8,18).map(cardHTML).join('');
+document.getElementById('rowPop').innerHTML=P.slice(0,6).map(cardHTML).join('');
 
-var CATS=['전체','자전거','카메라','드론','오디오','골프','낚시','캠핑'];
-var allIcon='<svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
-document.getElementById('chips').innerHTML=CATS.map(function(c,i){return '<div class="chip'+(i===0?' on':'')+'" data-c="'+c+'">'+(c==='전체'?allIcon:ICON[c])+c+'</div>';}).join('');
+var CATS=['전체','입문형','프로','FPV'];
+var dIcon=ICON['드론'];
+document.getElementById('chips').innerHTML=CATS.map(function(c,i){return '<div class="chip'+(i===0?' on':'')+'" data-c="'+c+'">'+dIcon+(c==='전체'?'전체 드론':c)+'</div>';}).join('');
 var current='전체';
-function renderGrid(){var list=current==='전체'?P:P.filter(function(p){return p.cat===current});
- document.getElementById('gtitle').textContent=current==='전체'?'전체 매물':current+' 매물';
+function renderGrid(){var list=current==='전체'?P:P.filter(function(p){return p.tier===current});
+ document.getElementById('gtitle').textContent=current==='전체'?'전체 드론 매물':'드론 · '+current;
  document.getElementById('grid').innerHTML=list.map(cardHTML).join('');}
 renderGrid();
-function setCat(c){current=c;document.querySelectorAll('.chip').forEach(function(e){e.classList.toggle('on',e.dataset.c===c)});
+function setCat(c){if(c==='곧오픈'){alert('카메라·자전거 카테고리는 곧 오픈합니다 🚀');return;}
+ current=c;document.querySelectorAll('.chip').forEach(function(e){e.classList.toggle('on',e.dataset.c===c)});
  document.querySelectorAll('.subnav a').forEach(function(e){e.classList.toggle('on',e.dataset.cat===c)});renderGrid();
  window.scrollTo({top:document.getElementById('gtitle').getBoundingClientRect().top+window.scrollY-120,behavior:'smooth'});}
 document.getElementById('chips').addEventListener('click',function(e){var t=e.target.closest('.chip');if(t)setCat(t.dataset.c)});
