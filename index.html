@@ -110,6 +110,30 @@ header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid 
 .tcell .ic svg{width:24px;height:24px;color:var(--blue)}
 .tcell h3{font-size:16px;font-weight:800}.tcell p{font-size:13px;color:var(--ink2);margin-top:6px;line-height:1.65}
 
+/* ===== ESCROW FLOW ===== */
+.escrow{padding:60px 0 20px;background:#fff}
+.escrow .lead{font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-bottom:8px}
+.escrow .ttl{font-size:27px;font-weight:900;letter-spacing:-1px;margin-bottom:6px}
+.escrow .sub{font-size:14px;color:var(--ink2);margin-bottom:30px;line-height:1.6}
+.eflow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+@media(max-width:900px){.eflow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.eflow{grid-template-columns:1fr}}
+.estep{background:var(--soft);border:1.5px solid var(--line);border-radius:16px;padding:22px 20px;position:relative;transition:.18s}
+.estep:hover{border-color:var(--blue);background:#f4f7ff;transform:translateY(-3px)}
+.estep .n{font-size:11px;font-weight:900;color:var(--blue);letter-spacing:.1em;margin-bottom:12px}
+.estep .ei{width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid var(--line2);display:grid;place-items:center;margin-bottom:14px}
+.estep .ei svg{width:22px;height:22px;color:var(--blue)}
+.estep h4{font-size:15px;font-weight:900;letter-spacing:-.3px}
+.estep p{font-size:12.5px;color:var(--ink2);margin-top:6px;line-height:1.6}
+.estep .who{margin-top:12px;font-size:11px;font-weight:800;color:var(--blue);background:#eaf0ff;padding:4px 9px;border-radius:6px;display:inline-block}
+.emoney{margin-top:34px;background:linear-gradient(135deg,#1a2540 0%,#0c1118 100%);color:#fff;border-radius:18px;padding:28px 30px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.emoney .em-ic{width:56px;height:56px;border-radius:14px;background:rgba(47,107,255,.22);display:grid;place-items:center;flex:none}
+.emoney .em-ic svg{width:28px;height:28px;color:#7fa3ff}
+.emoney .em-t{flex:1;min-width:200px}
+.emoney .em-t b{font-size:17px;font-weight:900;letter-spacing:-.4px;display:block;margin-bottom:4px}
+.emoney .em-t span{font-size:13px;color:#b5bbc7;line-height:1.55}
+.emoney .em-tag{background:#ffd54a;color:#0c1118;font-size:11.5px;font-weight:900;padding:6px 12px;border-radius:8px;letter-spacing:.02em}
+
 footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var(--line)}
 .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}.ft b{color:var(--ink)}
 
@@ -153,7 +177,7 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
   <div class="hbar">
    <a class="logo" href="#"><span class="mk"><svg viewBox="0 0 380 380"><g transform="translate(70,78) scale(0.7)"><path d="M40 14 L168 14 a40 40 0 0 1 40 40 L248 132 a26 26 0 0 1 -7.6 18.4 L150 240.4 a26 26 0 0 1 -36.8 0 L17.6 144.8 a26 26 0 0 1 -7.6 -18.4 L10 54 a40 40 0 0 1 30 -40 Z" fill="#fff"/><circle cx="70" cy="74" r="20" fill="#2f6bff"/><g fill="none" stroke="#2f6bff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M70 178 L112 134 L142 160 L196 100"/></g><path d="M196 100 l-6 34 l-28 -8 z" fill="#2f6bff"/></g></svg></span>시세</a>
    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="브랜드, 모델명 검색 (예: 트렉, 소니 A7)"/></div>
-   <nav class="hnav"><a href="#trust">시세란?</a><a class="btn-sell" href="#">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
+   <nav class="hnav"><a href="#trust">시세란?</a><a href="#escrow">안전거래</a><a class="btn-sell" href="#">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
   </div>
   <nav class="subnav" id="subnav">
    <a class="on" data-cat="전체">전체</a><a data-cat="카메라">카메라</a><a data-cat="드론">드론</a><a data-cat="곧오픈" style="color:#c0c5cd">자전거 (곧 오픈)</a>
@@ -184,6 +208,47 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
   <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17 9 11 13 15 21 7"/><path d="M3 21h18"/></svg></div><h3>실거래 시세</h3><p>실제 거래된 가격을 모아 모델·상태별 적정가를 보여줍니다. 거래가 쌓일수록 시세는 더 정확해집니다.</p></div>
   <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>안전거래</h3><p>구매 대금을 안전하게 보관했다가 물건 확인 후 판매자에게 전달합니다. 사기 걱정 없이.</p></div>
   <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h3>전문가 검수</h3><p>분야 전문가가 상태를 점검해 표준 등급으로 알려드립니다. 직접 보지 않아도 믿고 살 수 있게.</p></div>
+ </div>
+</div></section>
+
+<section class="escrow" id="escrow"><div class="wrap">
+ <div class="lead">HOW ESCROW WORKS</div>
+ <div class="ttl">안전거래는 이렇게 굴러갑니다</div>
+ <div class="sub">돈은 <b>시세</b>가 잠깐 보관합니다. 판매자에게 바로 안 넘어가요. 물건이 무사히 도착·확인된 뒤에만 정산됩니다.</div>
+ <div class="eflow">
+  <div class="estep">
+   <div class="n">STEP 01</div>
+   <div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
+   <h4>구매자 결제</h4>
+   <p>카드·계좌이체·간편결제로 대금을 결제합니다. 이 돈은 판매자에게 바로 가지 않아요.</p>
+   <div class="who">구매자</div>
+  </div>
+  <div class="estep">
+   <div class="n">STEP 02</div>
+   <div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M8 12h8M8 15h5"/></svg></div>
+   <h4>시세가 대금 예치</h4>
+   <p>결제 대금은 시세 명의의 에스크로 계좌에 안전하게 보관됩니다. 판매자에겐 "결제 완료" 알림만.</p>
+   <div class="who">시세 (에스크로)</div>
+  </div>
+  <div class="estep">
+   <div class="n">STEP 03</div>
+   <div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h13l5 5v5h-3"/><path d="M6 17h9"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+   <h4>배송 · 수령 확인</h4>
+   <p>물건 도착 후 상태를 확인하고 "수령 완료" 버튼을 누르면 다음 단계로. 확인 안 하면 7일 뒤 자동 확정.</p>
+   <div class="who">구매자</div>
+  </div>
+  <div class="estep">
+   <div class="n">STEP 04</div>
+   <div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12l5 5L20 6"/></svg></div>
+   <h4>판매자 정산</h4>
+   <p>수령이 확정된 순간에만 시세가 판매자 계좌로 대금을 이체합니다. 문제 있으면 즉시 환불.</p>
+   <div class="who">판매자</div>
+  </div>
+ </div>
+ <div class="emoney">
+  <div class="em-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+  <div class="em-t"><b>0원 사기 · 0원 잠적</b><span>판매자가 물건을 안 보내거나 상태가 다르면 대금은 자동 환불됩니다. 구매자 돈은 시세 손을 벗어난 적이 없어요.</span></div>
+  <span class="em-tag">100% 안전거래 보장</span>
  </div>
 </div></section>
 
