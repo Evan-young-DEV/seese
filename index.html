@@ -134,6 +134,53 @@ header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid 
 .emoney .em-t span{font-size:13px;color:#b5bbc7;line-height:1.55}
 .emoney .em-tag{background:#ffd54a;color:#0c1118;font-size:11.5px;font-weight:900;padding:6px 12px;border-radius:8px;letter-spacing:.02em}
 
+/* ===== SELL FLOW (판매자 온보딩) ===== */
+.sellf{padding:60px 0 20px;background:var(--soft)}
+.sellf .lead{font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-bottom:8px}
+.sellf .ttl{font-size:27px;font-weight:900;letter-spacing:-1px;margin-bottom:6px}
+.sellf .sub{font-size:14px;color:var(--ink2);margin-bottom:30px;line-height:1.6}
+.sflow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:1080px){.sflow{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.sflow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.sflow{grid-template-columns:1fr}}
+.sstep{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:22px 18px;transition:.18s;position:relative}
+.sstep:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 28px rgba(47,107,255,.09)}
+.sstep .sn{position:absolute;top:16px;right:16px;font-size:32px;font-weight:900;color:#eaeef7;letter-spacing:-1.5px;line-height:1}
+.sstep .si{width:44px;height:44px;border-radius:11px;background:#eef3ff;display:grid;place-items:center;margin-bottom:12px}
+.sstep .si svg{width:22px;height:22px;color:var(--blue)}
+.sstep h4{font-size:15px;font-weight:900;letter-spacing:-.3px}
+.sstep p{font-size:12.5px;color:var(--ink2);margin-top:6px;line-height:1.6}
+.sstep .flag{margin-top:11px;font-size:11px;font-weight:800;background:#0c1118;color:#fff;padding:4px 9px;border-radius:6px;display:inline-block;letter-spacing:.02em}
+.sstep .flag.free{background:#0aa17a}
+.sstep .flag.you{background:#2f6bff}
+.sellcta{margin-top:32px;background:#0c1118;color:#fff;border-radius:18px;padding:30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.sellcta .sctag{background:#ffd54a;color:#0c1118;font-size:11px;font-weight:900;padding:5px 10px;border-radius:6px;letter-spacing:.04em}
+.sellcta .sctxt{flex:1;min-width:220px}
+.sellcta .sctxt b{font-size:20px;font-weight:900;letter-spacing:-.6px;display:block;margin:8px 0 4px}
+.sellcta .sctxt span{font-size:13px;color:#b5bbc7;line-height:1.55}
+.sellcta .scbtn{background:#fff;color:#0c1118;font-size:14.5px;font-weight:900;padding:14px 22px;border-radius:11px;border:none;cursor:pointer;transition:.15s}
+.sellcta .scbtn:hover{background:#ffd54a}
+
+/* ===== SELL FORM MODAL ===== */
+.smodal{position:fixed;inset:0;z-index:130;display:none;background:rgba(10,16,28,.55);backdrop-filter:blur(5px)}
+.smodal.show{display:grid;place-items:center;padding:20px}
+.sform{background:#fff;border-radius:20px;width:480px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;position:relative;animation:pop .22s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+.sform .xc{position:absolute;top:14px;right:14px;background:none;border:none;font-size:24px;color:var(--mut);cursor:pointer;width:34px;height:34px;border-radius:8px}
+.sform .xc:hover{background:var(--soft);color:var(--ink)}
+.sform h3{font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:5px}
+.sform .desc{font-size:13px;color:var(--ink2);margin-bottom:22px;line-height:1.55}
+.sform label{display:block;font-size:12.5px;font-weight:800;color:var(--ink);margin:14px 0 6px}
+.sform input,.sform select,.sform textarea{width:100%;border:1.5px solid var(--line2);border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;background:var(--soft);transition:.15s}
+.sform input:focus,.sform select:focus,.sform textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(47,107,255,.09)}
+.sform textarea{resize:vertical;min-height:80px}
+.sform .submit{width:100%;margin-top:22px;background:var(--blue);color:#fff;border:none;padding:15px;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;transition:.15s}
+.sform .submit:hover{background:var(--blue-d)}
+.sform .thanks{text-align:center;padding:40px 20px}
+.sform .thanks .em{font-size:52px;margin-bottom:14px}
+.sform .thanks h4{font-size:20px;font-weight:900;letter-spacing:-.4px}
+.sform .thanks p{font-size:13.5px;color:var(--ink2);margin-top:8px;line-height:1.65}
+
 footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var(--line)}
 .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}.ft b{color:var(--ink)}
 
@@ -170,14 +217,14 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
 </head>
 <body>
 
-<div class="announce">⚡ 실거래가 기반 <b>시세</b> + 100% 안전거래 — 중고 장비, 이제 감으로 사지 마세요</div>
+<div class="announce">⚡ 정품 검수 · 실거래 시세 · 안전거래 — <b>당근보다 정확하게, 크림처럼 안전하게</b></div>
 
 <header>
  <div class="wrap">
   <div class="hbar">
    <a class="logo" href="#"><span class="mk"><svg viewBox="0 0 380 380"><g transform="translate(70,78) scale(0.7)"><path d="M40 14 L168 14 a40 40 0 0 1 40 40 L248 132 a26 26 0 0 1 -7.6 18.4 L150 240.4 a26 26 0 0 1 -36.8 0 L17.6 144.8 a26 26 0 0 1 -7.6 -18.4 L10 54 a40 40 0 0 1 30 -40 Z" fill="#fff"/><circle cx="70" cy="74" r="20" fill="#2f6bff"/><g fill="none" stroke="#2f6bff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M70 178 L112 134 L142 160 L196 100"/></g><path d="M196 100 l-6 34 l-28 -8 z" fill="#2f6bff"/></g></svg></span>시세</a>
    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="브랜드, 모델명 검색 (예: 트렉, 소니 A7)"/></div>
-   <nav class="hnav"><a href="#trust">시세란?</a><a href="#escrow">안전거래</a><a class="btn-sell" href="#">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
+   <nav class="hnav"><a href="#trust">시세란?</a><a href="#escrow">안전거래</a><a class="btn-sell" href="#sellf" id="navSell">판매하기</a><a class="btn-login" href="#">로그인 / 가입</a></nav>
   </div>
   <nav class="subnav" id="subnav">
    <a class="on" data-cat="전체">전체</a><a data-cat="카메라">카메라</a><a data-cat="드론">드론</a><a data-cat="곧오픈" style="color:#c0c5cd">자전거 (곧 오픈)</a>
@@ -187,9 +234,9 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
 
 <!-- HERO BANNERS -->
 <section class="hero"><div class="wrap"><div class="banners">
-  <div class="bn" data-cat="카메라"><img src="img/cam1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">셔터수 검증 · 실거래 시세</div><h3>카메라 · 렌즈 시세</h3><span class="go">지금 보기 →</span></div></div>
-  <div class="bn small" data-cat="드론"><img src="img/drone1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">DJI 매빅 · 미니</div><h3>드론</h3></div></div>
-  <div class="bn small" data-cat="곧오픈"><img src="img/bike1.jpg" style="filter:grayscale(.5) brightness(.8)" onerror="this.style.opacity=0"><div class="t"><div class="k">곧 오픈</div><h3>자전거</h3></div></div>
+  <div class="bn" data-cat="카메라"><img src="img/cam1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">THIS WEEK · 정품 검수 완료</div><h3>카메라 · 렌즈</h3><span class="go">시세 보기 →</span></div></div>
+  <div class="bn small" data-cat="드론"><img src="img/drone1.jpg" onerror="this.style.opacity=0"><div class="t"><div class="k">DJI 정품 검수</div><h3>드론 시세</h3></div></div>
+  <div class="bn small" data-cat="곧오픈"><img src="img/bike1.jpg" style="filter:grayscale(.5) brightness(.8)" onerror="this.style.opacity=0"><div class="t"><div class="k">COMING SOON</div><h3>자전거</h3></div></div>
 </div></div></section>
 
 <div class="wrap">
@@ -203,11 +250,11 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
 <div class="wrap"><div class="sec"><div class="sec-h"><h2 id="gtitle">전체 매물</h2><a href="#">정렬 ▾</a></div><div class="grid" id="grid"></div></div></div>
 
 <section class="trust" id="trust"><div class="wrap">
- <div class="lead">WHY SISE</div><div class="ttl">중고 거래, 이제 감으로 하지 마세요</div>
+ <div class="lead">WHY SISE</div><div class="ttl">당근보다 정확하게, 크림처럼 안전하게</div>
  <div class="tg">
-  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17 9 11 13 15 21 7"/><path d="M3 21h18"/></svg></div><h3>실거래 시세</h3><p>실제 거래된 가격을 모아 모델·상태별 적정가를 보여줍니다. 거래가 쌓일수록 시세는 더 정확해집니다.</p></div>
-  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>안전거래</h3><p>구매 대금을 안전하게 보관했다가 물건 확인 후 판매자에게 전달합니다. 사기 걱정 없이.</p></div>
-  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h3>전문가 검수</h3><p>분야 전문가가 상태를 점검해 표준 등급으로 알려드립니다. 직접 보지 않아도 믿고 살 수 있게.</p></div>
+  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17 9 11 13 15 21 7"/><path d="M3 21h18"/></svg></div><h3>실거래 시세</h3><p>실제 거래된 가격을 모아 모델·상태별 적정가를 보여줍니다. 감으로 사고팔던 시대는 끝.</p></div>
+  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>안전거래 에스크로</h3><p>대금을 시세가 잠깐 보관했다가 물건 수령 확인 뒤 판매자에게 정산. 사기 원천 차단.</p></div>
+  <div class="tcell"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h3>고퀄 프로덕트</h3><p>전문가 검수로 상태 등급 판정 + 스튜디오 실사 사진. 당근·번개에서 못 보던 퀄리티로 등록.</p></div>
  </div>
 </div></section>
 
@@ -251,6 +298,75 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
   <span class="em-tag">100% 안전거래 보장</span>
  </div>
 </div></section>
+
+<section class="sellf" id="sellf"><div class="wrap">
+ <div class="lead">HOW TO SELL</div>
+ <div class="ttl">판매자는 카메라만 주세요. 나머지는 시세가 합니다.</div>
+ <div class="sub">사진 촬영, 상태 검수, 가격 책정, 등록, 판매까지 <b>시세가 대신 해드립니다.</b> 판매자는 물건만 넘기면 끝. 크림처럼 안전하게, 당근보다 정확하게.</div>
+ <div class="sflow">
+  <div class="sstep">
+   <div class="sn">01</div>
+   <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h16"/><circle cx="19" cy="12" r="2"/></svg></div>
+   <h4>판매 신청</h4>
+   <p>브랜드·모델·간단한 상태만 폼에 적어주세요. 30초면 끝.</p>
+   <div class="flag you">판매자</div>
+  </div>
+  <div class="sstep">
+   <div class="sn">02</div>
+   <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h13l5 5v5h-3"/><path d="M6 17h9"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+   <h4>픽업 · 배송</h4>
+   <p>수도권은 무료 방문 픽업. 지방은 착불 택배로 시세 스튜디오에 보내주세요.</p>
+   <div class="flag free">무료 픽업</div>
+  </div>
+  <div class="sstep">
+   <div class="sn">03</div>
+   <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+   <h4>정품 검수 + 실사 촬영</h4>
+   <p>전문가가 상태 등급 판정 (A/B/C). 스튜디오에서 프리미엄 실사 사진 촬영.</p>
+   <div class="flag">시세</div>
+  </div>
+  <div class="sstep">
+   <div class="sn">04</div>
+   <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17 9 11 13 15 21 7"/><path d="M15 7h6v6"/></svg></div>
+   <h4>시세 페이지 등록</h4>
+   <p>실거래 데이터로 적정가 자동 산정. 프리미엄 사진 + 검수 배지 붙여 상품 등록.</p>
+   <div class="flag">시세</div>
+  </div>
+  <div class="sstep">
+   <div class="sn">05</div>
+   <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+   <h4>판매 완료 → 정산</h4>
+   <p>구매자 수령 확정되면 판매자 계좌로 즉시 이체. 수수료 판매가의 8%만.</p>
+   <div class="flag you">판매자</div>
+  </div>
+ </div>
+ <div class="sellcta">
+  <span class="sctag">얼리 셀러 모집</span>
+  <div class="sctxt"><b>당신의 장비를, 시세가 대신 팔아드립니다.</b><span>사진 못 찍어도, 시세 잘 몰라도 OK. 물건만 넘겨주면 나머지는 저희가.</span></div>
+  <button class="scbtn" id="openSell">지금 판매 신청 →</button>
+ </div>
+</div></section>
+
+<div class="smodal" id="smodal">
+ <div class="sform">
+  <button class="xc" onclick="closeSell()">×</button>
+  <div id="sformBody">
+   <h3>판매 신청</h3>
+   <div class="desc">간단한 정보만 알려주시면 시세 팀이 24시간 안에 연락드립니다.<br>사진·시세·검수는 저희가 다 합니다.</div>
+   <label>이름</label>
+   <input type="text" id="sfName" placeholder="홍길동" required>
+   <label>연락처 (카카오톡 or 전화)</label>
+   <input type="text" id="sfPhone" placeholder="010-0000-0000 or 카톡 ID" required>
+   <label>카테고리</label>
+   <select id="sfCat"><option>카메라</option><option>드론</option><option>렌즈</option><option>기타 취미장비</option></select>
+   <label>브랜드 · 모델명</label>
+   <input type="text" id="sfModel" placeholder="예: 소니 A7 IV, DJI 미니 4 Pro" required>
+   <label>대략적인 상태</label>
+   <textarea id="sfCond" placeholder="사용 기간, 흠집 여부, 박스 유무 등 아는 만큼만 적어주세요"></textarea>
+   <button class="submit" onclick="submitSell()">판매 신청하기</button>
+  </div>
+ </div>
+</div>
 
 <footer><div class="wrap ft"><div><b>시세 (SISE)</b> · 중고 장비, 시세로 거래하다</div><div>© 2026 SISE · 사전 검증용 데모</div></div></footer>
 
@@ -296,7 +412,7 @@ P.forEach(function(p){var n=CNT[p.cat]||0;p.img=POOL[p.cat][n%POOL[p.cat].length
 var won=function(n){return n.toLocaleString('ko-KR')+'원'};
 function cardHTML(p){var gi=P.indexOf(p),up=p.chg>=0;
  return '<div class="card" data-i="'+gi+'"><div class="thumb" style="background:'+BG[p.cat]+'">'
-  +'<span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>시세 검증</span>'
+  +'<span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>정품 검수</span>'
   +'<span class="trend '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'%</span>'
   +'<img src="'+p.img+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
   +'<div class="cb"><div class="cat">'+p.cat+' · '+p.tier+'</div><div class="nm">'+p.name+'</div>'
@@ -331,7 +447,7 @@ var modal=document.getElementById('modal'),sheet=document.getElementById('sheet'
 function openDetail(i){var p=P[i],up=p.chg>=0,s=genSeries(p.price,i+1);
  sheet.innerHTML='<div class="dt"><b>'+p.cat+' 상세</b><button class="x" onclick="closeD()">×</button></div><div class="dp">'
   +'<div class="di" style="background:'+BG[p.cat]+'"><img src="'+p.img+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
-  +'<div class="dcat">'+p.cat+' · 시세 검증 매물</div><div class="dnm">'+p.name+'</div>'
+  +'<div class="dcat">'+p.cat+' · 정품 검수 매물</div><div class="dnm">'+p.name+'</div>'
   +'<div class="dnow"><div><div class="lab">실거래 시세</div><div class="p">'+won(p.price)+'</div></div><div class="t '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'% (30일)</div></div>'
   +'<div class="cx"><div class="cxh"><b>시세 추이</b><div class="rg"><span>1주</span><span class="on">1개월</span><span>3개월</span><span>전체</span></div></div>'+chartSVG(s)+'</div>'
   +'<div class="ask"><div class="b"><div class="l">즉시 구매가</div><div class="v">'+won(p.ask)+'</div></div><div class="b"><div class="l">즉시 판매가</div><div class="v">'+won(p.bid)+'</div></div></div>'
@@ -345,6 +461,19 @@ function openDetail(i){var p=P[i],up=p.chg>=0,s=genSeries(p.price,i+1);
 window.closeD=function(){modal.classList.remove('show');document.body.style.overflow=''};
 document.addEventListener('click',function(e){var c=e.target.closest('.card');if(c)openDetail(+c.dataset.i)});
 modal.addEventListener('click',function(e){if(e.target===modal)closeD()});
+
+/* ===== SELL FORM ===== */
+var smodal=document.getElementById('smodal');
+function openSell(){smodal.classList.add('show');document.body.style.overflow='hidden'}
+window.closeSell=function(){smodal.classList.remove('show');document.body.style.overflow=''}
+document.getElementById('openSell').addEventListener('click',openSell);
+document.getElementById('navSell').addEventListener('click',function(e){});
+smodal.addEventListener('click',function(e){if(e.target===smodal)closeSell()});
+window.submitSell=function(){
+ var n=document.getElementById('sfName').value.trim(),p=document.getElementById('sfPhone').value.trim(),m=document.getElementById('sfModel').value.trim();
+ if(!n||!p||!m){alert('이름 · 연락처 · 모델명은 꼭 알려주세요');return}
+ document.getElementById('sformBody').innerHTML='<div class="thanks"><div class="em">✅</div><h4>판매 신청 완료!</h4><p>시세 팀이 <b>24시간 안에</b> 연락드릴게요.<br>연락 받으신 뒤 픽업 일정만 잡아주시면, 사진·검수·등록·판매까지 모두 저희가 진행합니다.</p></div>';
+}
 </script>
 </body>
 </html>
