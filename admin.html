@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>시세 관리자 · 매물 등록</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+<style>
+:root{--blue:#2f6bff;--blue-d:#1f49b8;--ink:#0c1118;--ink2:#60697a;--mut:#9aa2ad;
+  --line:#ececf0;--line2:#e1e4ea;--soft:#f8f9fb;--ok:#0aa17a;--warn:#e0483d}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,sans-serif;color:var(--ink);background:var(--soft);line-height:1.5;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+.top .lg{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px;letter-spacing:-1px}
+.top .lg .mk{width:34px;height:34px;border-radius:9px;background:var(--blue);display:grid;place-items:center;color:#fff;font-weight:900;font-size:15px}
+.top .lg .tag{background:#0c1118;color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:6px;letter-spacing:.05em;margin-left:6px}
+.top-r{display:flex;gap:10px;align-items:center}
+.top-r a{font-size:13px;color:var(--ink2);font-weight:700;padding:9px 14px;border-radius:8px;background:#fff;border:1.5px solid var(--line2)}
+.top-r a:hover{border-color:var(--blue);color:var(--blue)}
+
+h1{font-size:30px;font-weight:900;letter-spacing:-.8px;margin-bottom:6px}
+.sub{font-size:14.5px;color:var(--ink2);margin-bottom:28px;line-height:1.65}
+.sub b{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.card + .card{margin-top:16px}
+.card h2{font-size:16px;font-weight:900;margin-bottom:14px;letter-spacing:-.3px;display:flex;align-items:center;gap:9px}
+.card h2 .num{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:7px;font-size:12.5px;display:grid;place-items:center;font-weight:900}
+
+label{display:block;font-size:12.5px;font-weight:800;margin:14px 0 6px;color:var(--ink)}
+label:first-of-type,.card > label:first-child{margin-top:0}
+label .req{color:var(--warn);margin-left:2px}
+input,select,textarea{width:100%;border:1.5px solid var(--line2);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit;background:var(--soft);transition:.15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(47,107,255,.09)}
+textarea{resize:vertical;min-height:64px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:520px){.row3{grid-template-columns:1fr 1fr}}
+
+/* upload */
+.drop{border:2px dashed var(--line2);border-radius:12px;padding:26px 20px;text-align:center;background:var(--soft);cursor:pointer;transition:.15s}
+.drop.hover{border-color:var(--blue);background:#eef3ff}
+.drop svg{width:38px;height:38px;color:var(--mut);margin-bottom:8px}
+.drop b{display:block;font-size:14px;font-weight:800;margin-bottom:2px}
+.drop span{font-size:12.5px;color:var(--ink2)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media(max-width:520px){.thumbs{grid-template-columns:repeat(3,1fr)}}
+.thumbs .t{aspect-ratio:1/1;border-radius:9px;overflow:hidden;position:relative;border:1.5px solid var(--line);background:#000}
+.thumbs .t img{width:100%;height:100%;object-fit:cover}
+.thumbs .t .x{position:absolute;top:4px;right:4px;width:24px;height:24px;background:rgba(0,0,0,.75);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:15px;line-height:1;font-weight:700}
+.thumbs .t.main::before{content:"MAIN";position:absolute;top:5px;left:5px;background:var(--blue);color:#fff;font-size:9px;font-weight:900;padding:3px 6px;border-radius:4px;letter-spacing:.05em;z-index:1}
+
+/* preview card (실제 index.html과 동일) */
+.pv{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.16s}
+.pv .pvi{aspect-ratio:1/1;background:var(--soft);position:relative;overflow:hidden}
+.pv .pvi img{width:100%;height:100%;object-fit:cover}
+.pv .pvi .empty{position:absolute;inset:0;display:grid;place-items:center;color:var(--mut);font-size:13px;font-weight:600}
+.pv .pvi .bd{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.96);font-size:10px;font-weight:800;color:var(--blue);padding:5px 8px;border-radius:6px;display:flex;align-items:center;gap:4px}
+.pv .pvi .bd svg{width:10px;height:10px}
+.pv .pvi .tr{position:absolute;top:10px;right:10px;font-size:10.5px;font-weight:800;padding:4px 7px;border-radius:6px;color:#fff}
+.pv .pvi .tr.u{background:rgba(10,161,122,.94)}.pv .pvi .tr.d{background:rgba(224,72,61,.94)}
+.pv .pvb{padding:14px}
+.pv .pvb .cat{font-size:10.5px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.pv .pvb .nm{font-size:14px;font-weight:800;margin-top:4px;line-height:1.38}
+.pv .pvb .pl{font-size:10.5px;color:var(--mut);margin-top:10px;font-weight:600}
+.pv .pvb .pr{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.pv .pvb .ps{font-size:11px;color:var(--mut);margin-top:2px}
+
+/* action */
+.act{margin-top:22px;display:grid;grid-template-columns:1fr;gap:10px}
+button.pri{background:var(--blue);color:#fff;border:none;padding:16px;font-size:15.5px;font-weight:900;border-radius:11px;cursor:pointer;transition:.15s;letter-spacing:-.2px}
+button.pri:hover{background:var(--blue-d);transform:translateY(-1px)}
+button.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line2);padding:14px;font-size:14px;font-weight:800;border-radius:11px;cursor:pointer;transition:.15s}
+button.sec:hover{background:var(--soft)}
+
+/* list */
+.list-card{margin-top:20px}
+.list-card h2 .cnt{background:var(--soft);color:var(--ink2);font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:5px;margin-left:auto}
+.list-empty{text-align:center;padding:32px 20px;color:var(--mut);font-size:13.5px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.list{grid-template-columns:1fr}}
+.li{display:flex;gap:11px;padding:10px;border:1px solid var(--line);border-radius:10px;align-items:center}
+.li .lii{width:48px;height:48px;border-radius:8px;background:var(--soft);flex:none;overflow:hidden}
+.li .lii img{width:100%;height:100%;object-fit:cover}
+.li .lit{flex:1;min-width:0}
+.li .lit .n{font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li .lit .p{font-size:12px;color:var(--ink2);font-weight:700;margin-top:1px}
+.li .del{background:none;border:none;color:var(--mut);cursor:pointer;font-size:18px;padding:4px 8px;border-radius:6px}
+.li .del:hover{background:#fdeae8;color:var(--warn)}
+
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-100px);background:var(--ok);color:#fff;padding:14px 26px;border-radius:11px;font-weight:800;font-size:14px;transition:.32s cubic-bezier(.2,.9,.3,1.4);box-shadow:0 12px 30px rgba(10,161,122,.35);z-index:100}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.warn{background:var(--warn);box-shadow:0 12px 30px rgba(224,72,61,.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <div class="lg"><span class="mk">S</span>시세<span class="tag">ADMIN</span></div>
+  <div class="top-r">
+    <a href="index.html" target="_blank">🏠 홈페이지 열기</a>
+  </div>
+</div>
+
+<h1>매물 등록</h1>
+<div class="sub">판매자한테 받은 물건 사진 <b>드래그 → 정보 입력 → 등록</b>. 클릭하는 순간 홈페이지 상단에 뜹니다. 재배포·git·코드 편집 <b>필요 없음</b>.</div>
+
+<div class="grid">
+
+ <!-- LEFT: 입력 -->
+ <div>
+
+  <div class="card">
+   <h2><span class="num">1</span> 사진 업로드</h2>
+   <div class="drop" id="drop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v14M6 9l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round"/></svg>
+    <b>사진 드래그 or 클릭 업로드</b>
+    <span>1장 이상 · JPG/PNG · 첫번째가 대표 이미지</span>
+    <input type="file" id="file" accept="image/*" multiple hidden>
+   </div>
+   <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <div class="card">
+   <h2><span class="num">2</span> 상품 정보</h2>
+   <div class="row2">
+    <div>
+      <label>카테고리<span class="req">*</span></label>
+      <select id="cat">
+        <option>카메라</option><option>드론</option><option>렌즈</option><option>오디오</option>
+        <option>자전거</option><option>골프</option><option>낚시</option><option>캠핑</option>
+      </select>
+    </div>
+    <div>
+      <label>티어 · 세부<span class="req">*</span></label>
+      <input id="tier" placeholder="바디 / 렌즈 / 프로 / 입문형">
+    </div>
+   </div>
+   <label>제품명<span class="req">*</span></label>
+   <input id="name" placeholder="예: 소니 A7 IV 바디 (셔터 8천컷)">
+   <label>실거래 시세 (원)<span class="req">*</span></label>
+   <input id="price" type="number" placeholder="2150000">
+   <div class="row3">
+    <div><label>즉시 구매가<span class="req">*</span></label><input id="ask" type="number" placeholder="2190000"></div>
+    <div><label>즉시 판매가<span class="req">*</span></label><input id="bid" type="number" placeholder="2050000"></div>
+    <div><label>30일 변동률(%)</label><input id="chg" type="number" step="0.1" placeholder="-2.1"></div>
+   </div>
+   <div class="row2">
+    <div>
+      <label>상태 등급</label>
+      <select id="grade"><option>A</option><option>A-</option><option>B+</option><option>B</option><option>C</option></select>
+    </div>
+    <div style="align-self:end">
+      <label style="visibility:hidden">a</label>
+      <input id="gnote" placeholder="정품박스 · 셔터 8,000 · 무흠집">
+    </div>
+   </div>
+  </div>
+
+ </div>
+
+ <!-- RIGHT: 미리보기 + 액션 + 등록된 목록 -->
+ <div>
+  <div class="card">
+   <h2><span class="num">3</span> 미리보기 (홈페이지 카드)</h2>
+   <div class="pv">
+    <div class="pvi" id="pvi"><div class="empty">사진 업로드 시 미리보기</div></div>
+    <div class="pvb">
+      <div class="cat" id="pvCat">카테고리 · 티어</div>
+      <div class="nm" id="pvNm">제품명 미입력</div>
+      <div class="pl">실거래 시세</div>
+      <div class="pr" id="pvPr">0원</div>
+      <div class="ps" id="pvPs">즉시구매 0원</div>
+    </div>
+   </div>
+   <div class="act">
+    <button class="pri" onclick="save()">✅ 홈페이지에 즉시 등록</button>
+    <button class="sec" onclick="reset()">폼 초기화</button>
+   </div>
+  </div>
+
+  <div class="card list-card">
+    <h2><span class="num">4</span> 등록된 매물 <span class="cnt" id="cnt">0</span></h2>
+    <div id="listBox"></div>
+  </div>
+ </div>
+
+</div>
+</div>
+
+<div class="toast" id="toast">등록 완료</div>
+
+<script>
+var STORAGE_KEY='sise_admin_items';
+var files=[];
+
+var drop=document.getElementById('drop'),fi=document.getElementById('file'),thumbs=document.getElementById('thumbs');
+drop.onclick=function(){fi.click()};
+fi.onchange=function(e){addFiles(e.target.files);fi.value=''};
+['dragover','dragenter'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('hover')})});
+['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('hover')})});
+drop.addEventListener('drop',function(e){if(e.dataTransfer.files.length)addFiles(e.dataTransfer.files)});
+
+function addFiles(fl){
+  Array.from(fl).forEach(function(f){
+    if(!f.type.startsWith('image/'))return;
+    var r=new FileReader();
+    r.onload=function(){
+      // 이미지 리사이즈 (LocalStorage 용량 절약, max 900px)
+      var im=new Image();
+      im.onload=function(){
+        var cv=document.createElement('canvas'),max=900,w=im.width,h=im.height;
+        if(w>max||h>max){var s=max/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s)}
+        cv.width=w;cv.height=h;cv.getContext('2d').drawImage(im,0,0,w,h);
+        var dataUrl=cv.toDataURL('image/jpeg',0.85);
+        files.push(dataUrl);renderThumbs();updatePreview();
+      };
+      im.src=r.result;
+    };
+    r.readAsDataURL(f);
+  });
+}
+function renderThumbs(){
+  thumbs.innerHTML=files.map(function(d,i){
+    return '<div class="t'+(i===0?' main':'')+'"><img src="'+d+'"><button class="x" onclick="delFile('+i+')">×</button></div>';
+  }).join('');
+}
+window.delFile=function(i){files.splice(i,1);renderThumbs();updatePreview()};
+
+['cat','tier','name','price','ask','chg'].forEach(function(id){document.getElementById(id).addEventListener('input',updatePreview)});
+function won(n){return (parseInt(n)||0).toLocaleString('ko-KR')+'원'}
+function updatePreview(){
+  var c=document.getElementById('cat').value,t=document.getElementById('tier').value||'—',n=document.getElementById('name').value||'제품명 미입력';
+  var p=document.getElementById('price').value,a=document.getElementById('ask').value,ch=parseFloat(document.getElementById('chg').value)||0;
+  document.getElementById('pvCat').textContent=c+' · '+t;
+  document.getElementById('pvNm').textContent=n;
+  document.getElementById('pvPr').textContent=won(p);
+  document.getElementById('pvPs').textContent='즉시구매 '+won(a);
+  var pvi=document.getElementById('pvi'),up=ch>=0;
+  if(files.length){pvi.innerHTML='<img src="'+files[0]+'"><span class="bd"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>정품 검수</span><span class="tr '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(ch)+'%</span>'}
+  else{pvi.innerHTML='<div class="empty">사진 업로드 시 미리보기</div>'}
+}
+
+function getItems(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){return[]}}
+function saveItems(a){localStorage.setItem(STORAGE_KEY,JSON.stringify(a))}
+
+window.save=function(){
+  if(!files.length){toast('사진 최소 1장 필요','warn');return}
+  var c=document.getElementById('cat').value,t=document.getElementById('tier').value.trim(),n=document.getElementById('name').value.trim();
+  var p=parseInt(document.getElementById('price').value),a=parseInt(document.getElementById('ask').value),b=parseInt(document.getElementById('bid').value);
+  var ch=parseFloat(document.getElementById('chg').value)||0,g=document.getElementById('grade').value,gn=document.getElementById('gnote').value.trim();
+  if(!t||!n||!p||!a||!b){toast('필수 항목(*) 다 채워주세요','warn');return}
+  var item={id:Date.now(),cat:c,tier:t,name:n,price:p,chg:ch,ask:a,bid:b,grade:g+(gn?' · '+gn:''),img:files[0],imgs:files.slice(0,6)};
+  var arr=getItems();arr.unshift(item);
+  try{saveItems(arr)}catch(e){toast('저장 실패 (용량 초과) — 사진 줄여주세요','warn');return}
+  toast('✅ 홈페이지에 등록 완료 — 홈에서 확인하세요');
+  reset();renderList();
+};
+window.delItem=function(id){var arr=getItems().filter(function(x){return x.id!==id});saveItems(arr);renderList();toast('삭제됨')};
+
+function renderList(){
+  var arr=getItems();document.getElementById('cnt').textContent=arr.length;
+  var box=document.getElementById('listBox');
+  if(!arr.length){box.innerHTML='<div class="list-empty">아직 등록된 매물이 없습니다.<br>왼쪽 폼에서 첫 매물을 등록해보세요.</div>';return}
+  box.innerHTML='<div class="list">'+arr.map(function(x){
+    return '<div class="li"><div class="lii"><img src="'+x.img+'"></div><div class="lit"><div class="n">'+x.name+'</div><div class="p">'+won(x.price)+' · '+x.cat+'</div></div><button class="del" onclick="delItem('+x.id+')">×</button></div>';
+  }).join('')+'</div>';
+}
+
+window.reset=function(){files=[];renderThumbs();['tier','name','price','ask','bid','chg','gnote'].forEach(function(id){document.getElementById(id).value=''});updatePreview()};
+function toast(m,type){var t=document.getElementById('toast');t.textContent=m;t.classList.remove('warn');if(type==='warn')t.classList.add('warn');t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2400)}
+
+renderList();updatePreview();
+</script>
+</body>
+</html>

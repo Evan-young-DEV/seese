@@ -184,31 +184,60 @@ header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid 
 footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var(--line)}
 .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}.ft b{color:var(--ink)}
 
-/* ===== DETAIL ===== */
-.modal{position:fixed;inset:0;z-index:120;display:none;background:rgba(10,16,28,.5);backdrop-filter:blur(4px)}
+/* ===== PRODUCT PAGE (크림 스타일 페이지 진입) ===== */
+.modal{position:fixed;inset:0;z-index:120;display:none;background:#fff;overflow-y:auto;animation:fadeIn .2s ease}
 .modal.show{display:block}
-.sheet{position:absolute;right:0;top:0;height:100%;width:600px;max-width:100%;background:#fff;overflow-y:auto;box-shadow:-24px 0 70px rgba(0,0,0,.3);animation:sl .26s cubic-bezier(.2,.8,.2,1)}
-@keyframes sl{from{transform:translateX(60px);opacity:.4}to{transform:none;opacity:1}}
-.dt{display:flex;justify-content:space-between;align-items:center;padding:15px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);z-index:3}
-.dt b{font-size:14px}.dt .x{font-size:23px;color:var(--mut);cursor:pointer;background:none;border:none;width:34px;height:34px;border-radius:8px}
-.dt .x:hover{background:var(--soft);color:var(--ink)}
-.dp{padding:24px}
-.di{aspect-ratio:16/11;border-radius:var(--r);overflow:hidden;background:var(--img);margin-bottom:20px;position:relative}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sheet{max-width:1180px;margin:0 auto;padding:0 28px;background:transparent;position:static;height:auto;width:auto;box-shadow:none}
+@media(max-width:600px){.sheet{padding:0 16px}}
+.dt{display:flex;justify-content:space-between;align-items:center;padding:16px 0;position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid var(--line);margin-bottom:24px}
+.dt b{font-size:15px}
+.dt .x{font-size:14px;color:var(--ink);cursor:pointer;background:var(--soft);border:1.5px solid var(--line2);width:auto;padding:8px 16px;border-radius:9px;font-weight:800;display:flex;align-items:center;gap:6px}
+.dt .x:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dp{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;padding-bottom:60px}
+@media(max-width:900px){.dp{grid-template-columns:1fr;gap:26px}}
+.di{aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:var(--img);position:relative;position:sticky;top:80px}
+@media(max-width:900px){.di{position:static;aspect-ratio:4/3}}
 .di img{width:100%;height:100%;object-fit:cover}.di .fb{position:absolute;inset:0;display:none;place-items:center}.di .fb svg{width:28%;height:28%}
+.di .dbadge{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.96);font-size:11.5px;font-weight:800;color:var(--blue);padding:7px 12px;border-radius:8px;display:flex;align-items:center;gap:5px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.di .dbadge svg{width:12px;height:12px}
 .dcat{font-size:11.5px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.dnm{font-size:23px;font-weight:900;margin-top:5px;letter-spacing:-.6px;line-height:1.3}
+.dnm{font-size:28px;font-weight:900;margin-top:6px;letter-spacing:-.7px;line-height:1.3}
+@media(max-width:600px){.dnm{font-size:23px}}
 .dnow{display:flex;align-items:flex-end;gap:12px;margin-top:18px}
 .dnow .lab{font-size:12px;color:var(--mut);font-weight:600}.dnow .p{font-size:32px;font-weight:900;letter-spacing:-1.4px;line-height:1.1}
 .dnow .t{font-size:12.5px;font-weight:800;padding:5px 9px;border-radius:8px;margin-bottom:6px}
 .t.u{color:#0aa17a;background:#e3f7f1}.t.d{color:#e0483d;background:#fdeae8}
+
+/* ===== PRICE HERO (실거래가 강조) ===== */
+.phero{margin-top:22px;background:linear-gradient(135deg,#0c1118 0%,#1a2540 100%);color:#fff;border-radius:18px;padding:26px 24px;position:relative;overflow:hidden}
+.phero::after{content:"";position:absolute;top:-40%;right:-20%;width:280px;height:280px;background:radial-gradient(circle,rgba(47,107,255,.35),transparent 65%);pointer-events:none}
+.phero .porig{font-size:12.5px;color:#9aa8c4;font-weight:700;text-decoration:line-through;letter-spacing:.02em}
+.phero .plab{font-size:12px;color:#7fa3ff;font-weight:900;letter-spacing:.1em;margin:6px 0 8px;position:relative;z-index:1}
+.phero .pbig{font-size:46px;font-weight:900;letter-spacing:-2.2px;line-height:1;position:relative;z-index:1}
+@media(max-width:520px){.phero .pbig{font-size:38px}}
+.phero .pmeta{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;position:relative;z-index:1}
+.phero .pdisc{background:#0aa17a;color:#fff;font-size:12px;font-weight:900;padding:5px 10px;border-radius:7px;letter-spacing:.02em}
+.phero .ptrend{font-size:12.5px;font-weight:800;padding:5px 10px;border-radius:7px;background:rgba(255,255,255,.11);color:#fff}
+.phero .ptrend.u{color:#4ade9c}.phero .ptrend.d{color:#ff9089}
+.phero .pbase{font-size:11.5px;color:#7f8ba8;margin-top:10px;font-weight:600;position:relative;z-index:1}
+
+/* ===== ACCURACY BADGE (크림 파란 정품보증 스타일) ===== */
+.acc{margin-top:14px;background:#eef3ff;border:1.5px solid #d5dfff;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.acc .aic{width:32px;height:32px;border-radius:9px;background:var(--blue);display:grid;place-items:center;flex:none}
+.acc .aic svg{width:18px;height:18px;color:#fff}
+.acc .atxt{font-size:13px;color:#1f3d8f;line-height:1.5;font-weight:700}
+.acc .atxt b{color:var(--blue);font-weight:900}
+.acc .atxt span{color:#5a6bab;font-weight:600;font-size:12px;display:block;margin-top:2px}
 .cx{margin-top:20px;border:1px solid var(--line);border-radius:var(--r);padding:18px}
 .cxh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.cxh b{font-size:13.5px}
 .rg{display:flex;gap:4px}.rg span{font-size:11.5px;font-weight:700;color:var(--mut);padding:5px 10px;border-radius:7px;cursor:pointer}.rg span.on{background:var(--ink);color:#fff}
 .ask{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
 .ask .b{border:1.5px solid var(--line2);border-radius:12px;padding:15px;text-align:center}.ask .b .l{font-size:12px;color:var(--mut);font-weight:600}.ask .b .v{font-size:20px;font-weight:900;margin-top:4px;letter-spacing:-.5px}
 .acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.acts button{border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:800;cursor:pointer}
-.buy{background:var(--blue);color:#fff}.buy:hover{background:var(--blue-d)}.sell{background:#fff;border:2px solid var(--ink)!important}.sell:hover{background:var(--soft)}
+.acts button{border:none;border-radius:12px;padding:17px;font-size:15.5px;font-weight:900;cursor:pointer;letter-spacing:-.2px;transition:.15s}
+.acts button b{display:block;font-size:11px;font-weight:700;opacity:.75;margin-bottom:2px}
+.buy{background:var(--blue);color:#fff}.buy:hover{background:var(--blue-d);transform:translateY(-1px)}.sell{background:#fff;border:2px solid var(--ink)!important;color:var(--ink)}.sell:hover{background:var(--soft)}
 .sf{margin-top:18px;background:#eef3ff;border-radius:12px;padding:14px;font-size:12.5px;color:#2a4a96;display:flex;gap:10px;line-height:1.55}.sf svg{width:18px;height:18px;flex:none;color:var(--blue)}
 .tbl{margin-top:20px}.tbl .h{font-size:13px;font-weight:800;margin-bottom:8px}
 .tbl .r{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.tbl .r span:first-child{color:var(--ink2)}.tbl .r b{font-weight:700}
@@ -368,7 +397,7 @@ footer{padding:36px 0;color:var(--mut);font-size:12.5px;border-top:1px solid var
  </div>
 </div>
 
-<footer><div class="wrap ft"><div><b>시세 (SISE)</b> · 중고 장비, 시세로 거래하다</div><div>© 2026 SISE · 사전 검증용 데모</div></div></footer>
+<footer><div class="wrap ft"><div><b>시세 (SISE)</b> · 중고 장비, 시세로 거래하다</div><div>© 2026 SISE · 사전 검증용 데모 · <a href="admin.html" style="color:var(--mut);text-decoration:underline">관리자</a></div></div></footer>
 
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
 
@@ -409,6 +438,14 @@ var P=[
 // 각 상품에 카테고리별 실사진 순서대로 배정
 P.forEach(function(p){var n=CNT[p.cat]||0;p.img=POOL[p.cat][n%POOL[p.cat].length];CNT[p.cat]=n+1;});
 
+// ADMIN 등록 매물 (LocalStorage) 를 앞에 붙임 — admin.html 에서 등록 즉시 반영
+try{
+ var admin=JSON.parse(localStorage.getItem('sise_admin_items'))||[];
+ admin.reverse().forEach(function(a){
+  P.unshift({cat:a.cat,tier:a.tier,name:a.name,price:a.price,chg:a.chg,ask:a.ask,bid:a.bid,grade:a.grade,img:a.img,_new:true});
+ });
+}catch(e){}
+
 var won=function(n){return n.toLocaleString('ko-KR')+'원'};
 function cardHTML(p){var gi=P.indexOf(p),up=p.chg>=0;
  return '<div class="card" data-i="'+gi+'"><div class="thumb" style="background:'+BG[p.cat]+'">'
@@ -421,6 +458,8 @@ function cardHTML(p){var gi=P.indexOf(p),up=p.chg>=0;
 document.getElementById('rowPop').innerHTML=P.slice(0,6).map(cardHTML).join('');
 
 var CATS=['전체','카메라','드론'];
+// admin 등록 카테고리 자동 편입
+P.forEach(function(p){if(CATS.indexOf(p.cat)===-1)CATS.push(p.cat)});
 var allIcon='<svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
 document.getElementById('chips').innerHTML=CATS.map(function(c,i){return '<div class="chip'+(i===0?' on':'')+'" data-c="'+c+'">'+(c==='전체'?allIcon:ICON[c])+c+'</div>';}).join('');
 var current='전체';
@@ -445,22 +484,39 @@ function chartSVG(s){var w=520,h=190,pad=6,min=Math.min.apply(null,s),max=Math.m
 
 var modal=document.getElementById('modal'),sheet=document.getElementById('sheet');
 function openDetail(i){var p=P[i],up=p.chg>=0,s=genSeries(p.price,i+1);
- sheet.innerHTML='<div class="dt"><b>'+p.cat+' 상세</b><button class="x" onclick="closeD()">×</button></div><div class="dp">'
-  +'<div class="di" style="background:'+BG[p.cat]+'"><img src="'+p.img+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
-  +'<div class="dcat">'+p.cat+' · 정품 검수 매물</div><div class="dnm">'+p.name+'</div>'
-  +'<div class="dnow"><div><div class="lab">실거래 시세</div><div class="p">'+won(p.price)+'</div></div><div class="t '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'% (30일)</div></div>'
-  +'<div class="cx"><div class="cxh"><b>시세 추이</b><div class="rg"><span>1주</span><span class="on">1개월</span><span>3개월</span><span>전체</span></div></div>'+chartSVG(s)+'</div>'
-  +'<div class="ask"><div class="b"><div class="l">즉시 구매가</div><div class="v">'+won(p.ask)+'</div></div><div class="b"><div class="l">즉시 판매가</div><div class="v">'+won(p.bid)+'</div></div></div>'
-  +'<div class="acts"><button class="buy">'+won(p.ask)+' 구매</button><button class="sell">'+won(p.bid)+' 판매</button></div>'
-  +'<div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>안전거래 보호 — 구매 대금은 물건 확인 후 판매자에게 전달됩니다.</div>'
-  +'<div class="tbl"><div class="h">최근 거래</div><div class="r"><span>2일 전</span><b>'+won(p.price-30000)+'</b></div><div class="r"><span>5일 전</span><b>'+won(p.price-55000)+'</b></div><div class="r"><span>9일 전</span><b>'+won(p.price-90000)+'</b></div></div>'
-  +'<div class="tbl"><div class="h">매물 정보</div><div class="r"><span>상태 등급</span><b>'+p.grade+'</b></div><div class="r"><span>등록 매물</span><b>'+(3+i%6)+'건</b></div><div class="r"><span>찾는 사람</span><b>'+(8+i*2)+'명</b></div></div>'
+ var listPrice=Math.round(p.price*1.42/10000)*10000;
+ var discount=Math.round((1-p.price/listPrice)*100);
+ var deals=[{d:'2일 전',price:p.price-30000},{d:'3일 전',price:p.price-15000},{d:'5일 전',price:p.price-55000},{d:'8일 전',price:p.price+22000},{d:'12일 전',price:p.price-90000}];
+ var dealCount=42+(i*7)%38;
+ sheet.innerHTML='<div class="dt"><button class="x" onclick="closeD()">← 목록으로</button><b>'+p.cat+' · '+p.tier+'</b><div style="width:100px"></div></div>'
+  +'<div class="dp">'
+  +'<div class="di" style="background:'+BG[p.cat]+'"><span class="dbadge"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bff" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>정품 검수 완료</span><img src="'+p.img+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><div class="fb">'+ICON[p.cat]+'</div></div>'
+  +'<div>'
+   +'<div class="dcat">'+p.cat+' · '+p.tier+' · 정품 검수</div>'
+   +'<div class="dnm">'+p.name+'</div>'
+   +'<div class="phero">'
+    +'<div class="porig">신품 참고가 '+won(listPrice)+'</div>'
+    +'<div class="plab">실거래 시세 · REAL PRICE</div>'
+    +'<div class="pbig">'+won(p.price)+'</div>'
+    +'<div class="pmeta"><span class="pdisc">신품 대비 -'+discount+'%</span><span class="ptrend '+(up?'u':'d')+'">'+(up?'▲':'▼')+' '+Math.abs(p.chg)+'% (30일)</span></div>'
+    +'<div class="pbase">지난 30일 실거래 '+dealCount+'건 기반 · 매일 자동 갱신</div>'
+   +'</div>'
+   +'<div class="acc"><div class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="atxt"><b>실거래 100% 검증 · 오차 ±2% · 매일 시세 갱신</b><span>당근·번개는 부르는 값. 시세는 '+dealCount+'건 실제 거래된 데이터.</span></div></div>'
+   +'<div class="ask"><div class="b"><div class="l">즉시 구매가</div><div class="v">'+won(p.ask)+'</div></div><div class="b"><div class="l">즉시 판매가</div><div class="v">'+won(p.bid)+'</div></div></div>'
+   +'<div class="acts"><button class="buy"><b>즉시 구매</b>'+won(p.ask)+'</button><button class="sell"><b>즉시 판매</b>'+won(p.bid)+'</button></div>'
+   +'<div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>안전거래 에스크로 — 구매 대금은 시세가 잠깐 보관 후 물건 수령 확정 시 판매자에게 정산됩니다.</div>'
+   +'<div class="cx"><div class="cxh"><b>시세 추이</b><div class="rg"><span>1주</span><span class="on">1개월</span><span>3개월</span><span>전체</span></div></div>'+chartSVG(s)+'</div>'
+   +'<div class="tbl"><div class="h">최근 실거래 ('+dealCount+'건)</div>'+deals.map(function(d){return '<div class="r"><span>'+d.d+'</span><b>'+won(d.price)+'</b></div>'}).join('')+'</div>'
+   +'<div class="tbl"><div class="h">매물 정보</div><div class="r"><span>상태 등급</span><b>'+p.grade+'</b></div><div class="r"><span>등록 매물</span><b>'+(3+i%6)+'건</b></div><div class="r"><span>찾는 사람</span><b>'+(8+i*2)+'명</b></div></div>'
+  +'</div>'
   +'</div>';
- modal.classList.add('show');document.body.style.overflow='hidden';sheet.scrollTop=0;
+ modal.classList.add('show');document.body.style.overflow='hidden';window.scrollTo(0,0);
+ if(location.hash!=='#p/'+i)history.pushState({p:i},'','#p/'+i);
  sheet.querySelectorAll('.rg span').forEach(function(x){x.onclick=function(){sheet.querySelectorAll('.rg span').forEach(function(y){y.classList.remove('on')});x.classList.add('on')}});}
-window.closeD=function(){modal.classList.remove('show');document.body.style.overflow=''};
+window.closeD=function(){modal.classList.remove('show');document.body.style.overflow='';if(location.hash.indexOf('#p/')===0)history.pushState({},'',location.pathname)};
 document.addEventListener('click',function(e){var c=e.target.closest('.card');if(c)openDetail(+c.dataset.i)});
-modal.addEventListener('click',function(e){if(e.target===modal)closeD()});
+window.addEventListener('popstate',function(){var m=location.hash.match(/^#p\/(\d+)/);if(m&&P[+m[1]])openDetail(+m[1]);else closeD()});
+(function(){var m=location.hash.match(/^#p\/(\d+)/);if(m&&P[+m[1]])setTimeout(function(){openDetail(+m[1])},50)})();
 
 /* ===== SELL FORM ===== */
 var smodal=document.getElementById('smodal');
